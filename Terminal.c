@@ -5,6 +5,7 @@ v
 char string[500];
 char string2[500];
 char string3[500];
+char string4[500];
 
 int num = 1;
 
@@ -63,11 +64,12 @@ int main() {
             }
         }
         else if (strcmp(string, "binf()") == 0) {
+            printf("What Is The Name Of The Folder");
+            scanf("%s", string4);
             printf("What file do you want to bin: ");
             scanf("%s", string);
-            char destination[300] = "/workspaces/codespaces-blank/Bin/";
-            strcat(destination, string);
-            if (rename(string, destination) == 0) {
+            strcat(string4, string);
+            if (rename(string, string4) == 0) {
                 printf("%s has been binned.\n", string);
             }
             else {
@@ -82,6 +84,7 @@ int main() {
             rename(string, string2);
         }
         else if (strcmp(string, "restoref()") == 0) {
+            p
             printf("What file do you want to restore: ");
             scanf("%s", string);
             char destination[300] = "/workspaces/codespaces-blank/";
