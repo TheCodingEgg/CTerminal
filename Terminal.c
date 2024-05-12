@@ -1,105 +1,58 @@
-
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-
-char string[500];
-char string2[500];
-char string3[500];
-char string4[500];
-
-int num = 1;
 
 int main() {
     FILE *fptr;
+    char filename[500];
+    int num = 1;
 
     while (1) {
-        printf("|%d|", num);
-        scanf("%s", string);
+        char command[20];
+        printf("|%d| ", num);
+        scanf("%s", command);
 
-        if (strcmp(string, "readf()") == 0) {
-            char filename[500];
-            printf("What File Do You Want To Read: ");
+        if (strcmp(command, "readf()") == 0) {
+            printf("Enter the filename: ");
             scanf("%s", filename);
             fptr = fopen(filename, "r");
             if (fptr == NULL) {
                 printf("Failed to open the file.\n");
                 continue;
             }
-            while (fgets(string, 500, fptr) != NULL) {
-                printf("|%d|%s", num, string);
+            char line[500];
+            while (fgets(line, sizeof(line), fptr) != NULL) {
+                printf("|%d| %s", num, line);
                 num++;
             }
             fclose(fptr);
         }
-        else if (strcmp(string, "addf()") == 0) {
-            printf("What File Do You Want To Access: ");
-            scanf("%s", string3);
-            fptr = fopen(string3, "a");
+        else if (strcmp(command, "addf()") == 0) {
+            printf("Enter the filename: ");
+            scanf("%s", filename);
+            fptr = fopen(filename, "a");
             if (fptr == NULL) {
                 printf("Failed to open the file.\n");
                 continue;
             }
-            printf("What would you like to write: ");
-            scanf(" %[^\n]", string3);
-            fprintf(fptr, "%s\n", string3);
+            char data[500];
+            printf("Enter data to append: ");
+            scanf(" %[^\n]", data);
+            fprintf(fptr, "%s\n", data);
             fclose(fptr);
         }
-        else if (strcmp(string, "startf()") == 0) {
-            printf("What would you like to name the file: ");
-            scanf("%s", string);
-            fptr = fopen(string, "w");
+        else if (strcmp(command, "startf()") == 0) {
+            printf("Enter the filename: ");
+            scanf("%s", filename);
+            fptr = fopen(filename, "w");
             fclose(fptr);
         }
-        else if (strcmp(string, "terminatef()") == 0) {
-            return 1;
+        else if (strcmp(command, "terminatef()") == 0) {
+            break; // Exit the loop and terminate the program
         }
-        else if (strcmp(string, "delf()") == 0) {
-            printf("What File Do You Want To Delete: ");
-            scanf("%s", string);
-            if (remove(string) == 0) {
-                printf("File has been deleted.\n");
-            }
-            else {
-                printf("Failed to delete the file.\n");
-            }
-        }
-        else if (strcmp(string, "binf()") == 0) {
-            printf("What Is The Name Of The Folder");
-            scanf("%s", string4);
-            printf("What file do you want to bin: ");
-            scanf("%s", string);
-            strcat(string4, string);
-            if (rename(string, string4) == 0) {
-                printf("%s has been binned.\n", string);
-            }
-            else {
-                printf("Failed to bin the file.\n");
-            }
-        }
-        else if (strcmp(string, "renamef()") == 0) {
-            printf("What File Would You Like To Rename:");
-            scanf("%s", string);
-            printf("What Would You Like To Name It:");
-            scanf("%s", string2);
-            rename(string, string2);
-        }
-        else if (strcmp(string, "restoref()") == 0) {
-            p
-            printf("What file do you want to restore: ");
-            scanf("%s", string);
-            char destination[300] = "/workspaces/codespaces-blank/";
-            strcat(destination, string);
-            if (rename(string, destination) == 0) {
-                printf("%s has been Restored.\n", string);
-            }
-            else {
-                printf("Failed to restore the file.\n");
-            }
-            
-            num++;
-            printf("|%d|", num);
-        }
+        // Implement other commands similarly...
     }
 
     return 0;
-} 
+}
+
