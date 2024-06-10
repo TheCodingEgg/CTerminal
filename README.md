@@ -6,7 +6,7 @@ readf(): read a file
 
 delf(): delete a file
 
-Note: Restoref doesn't work but I am working on it
+restoref(): restore a file
 
 binf(): bins a file
 
@@ -15,7 +15,9 @@ startf(): makes a file
 terminatef(): stops terminal
 
 renamef(): renames file
-Note: You Cannot rename a file if is binned
+
+Write-Machine("input"): prints whatever you write in the inverted commas
+PS:you cant write something with a space take this Write-Machine("Hello World") see a space no printing
 
 Hope You Have Fun Bye :) 
 
